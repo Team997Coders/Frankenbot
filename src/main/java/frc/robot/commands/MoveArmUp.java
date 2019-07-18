@@ -26,6 +26,7 @@ public class MoveArmUp extends Command {
   @Override
   protected void execute() {
     Robot.arm.setSpeed(.3);
+    System.out.println("armUp");
   }
 
   // Make this return true when this Command no longer needs to run execute()
