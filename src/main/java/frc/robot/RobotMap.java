@@ -22,13 +22,14 @@ public class RobotMap {
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
 
-  public static int leftTalon = 7,
-  rightTalon = 2,
+  public static int 
+  leftTalon = 7,
+  rightTalon = 1,
   frontLeftVictor = 6,
   frontRightVictor = 2,
   backLeftVictor = 5,
   backRightVictor = 3,
-  armTalon = 42069, //TODO: get actual port
+  armTalon = 4, //TODO: get actual port
   buttonA = 1,
   buttonB = 2,
   buttonX = 3,            

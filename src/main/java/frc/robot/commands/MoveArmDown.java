@@ -25,7 +25,7 @@ public class MoveArmDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.arm.ArmSpeed(-.3);
+    Robot.arm.setSpeed(-.3);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class MoveArmDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Robot.arm.ArmSpeed(0);
+    Robot.arm.stopArm();
   }
 
   // Called when another command which requires one or more of the same

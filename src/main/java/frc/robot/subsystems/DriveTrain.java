@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -66,10 +67,8 @@ public class DriveTrain extends Subsystem {
 		/* set the peak, nominal outputs */
 		leftTalon.configNominalOutputForward(0, 10);
 		leftTalon.configNominalOutputReverse(0, 10);
-		//leftTalon.configPeakOutputForward(1, 10);	//Use for PB
-		//leftTalon.configPeakOutputReverse(-1, 10); //Use for PB
-		leftTalon.configPeakOutputForward(0.6, 10);	//Use for extrasensitive CB
-		leftTalon.configPeakOutputReverse(-0.6, 10); //Use for extrasensitive CB
+		leftTalon.configPeakOutputForward(1, 10);
+		leftTalon.configPeakOutputReverse(-1, 10);
 		
 		leftTalon.enableCurrentLimit(true);
 		leftTalon.configPeakCurrentLimit(40, 10);
@@ -78,10 +77,8 @@ public class DriveTrain extends Subsystem {
 		
 		rightTalon.configNominalOutputForward(0, 10);
 		rightTalon.configNominalOutputReverse(0, 10);
-		//rightTalon.configPeakOutputForward(1, 10); //Use for PB
-		//rightTalon.configPeakOutputReverse(-1, 10); //Use for PB
-		rightTalon.configPeakOutputForward(0.6, 10);  //Use for extrasensitive CB
-		rightTalon.configPeakOutputReverse(-0.6, 10); //Use for extrasensitive CB
+		rightTalon.configPeakOutputForward(1, 10);
+		rightTalon.configPeakOutputReverse(-1, 10);
 		
 		rightTalon.enableCurrentLimit(true);
 		rightTalon.configPeakCurrentLimit(40, 10);
@@ -105,12 +102,18 @@ public class DriveTrain extends Subsystem {
 		rightTalon.config_kD(0, 0, 10);	
   }
 
+  /**
+   * Set motor speed with a percent modifier.
+   */
   public void SetSpeed(double leftSpeed, double rightSpeed){
 	double modifier = .5;
     leftTalon.set(ControlMode.PercentOutput, leftSpeed * modifier);
     rightTalon.set(ControlMode.PercentOutput, rightSpeed * modifier);
   }
 
+  /**
+   * Set motor speed without any percent modifiers. 1 means go at 100%.
+   */
   public void SetUnmodifiedSpeed(double leftSpeed, double rightSpeed){
     leftTalon.set(ControlMode.PercentOutput, leftSpeed);
     rightTalon.set(ControlMode.PercentOutput, rightSpeed);
@@ -128,9 +131,11 @@ public class DriveTrain extends Subsystem {
 	  return rightTalon.getSelectedSensorPosition();
   }
 
-  public double GetGyro() {
-	  return gyro.getAngle();
+  public void updateSmartDashboard() {
+    SmartDashboard.putNumber("left encoder ticks", GetLeftEncoder());
+    SmartDashboard.putNumber("right encoder ticks", GetRightEncoder());
   }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

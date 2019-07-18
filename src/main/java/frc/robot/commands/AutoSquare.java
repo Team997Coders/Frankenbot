@@ -9,11 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Square extends CommandGroup {
+public class AutoSquare extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Square() {
+  public AutoSquare() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

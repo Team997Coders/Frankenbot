@@ -30,13 +30,13 @@ public class OI {
   // Button button = new JoystickButton(stick, buttonNumber);
   public OI(){
   gamepad = new Joystick(0);
+
   armDown = new JoystickButton(gamepad, RobotMap.buttonA);
-  //buttonB = new JoystickButton(gamepad, 2);
-  //buttonX = new JoystickButton(gamepad, 3);
   armUp = new JoystickButton(gamepad, RobotMap.buttonY);
   
   armUp.whileHeld(new MoveArmUp());
   armDown.whileHeld(new MoveArmDown());
+  
   }
   public double GetLeftY(){
     return -gamepad.getRawAxis(1);

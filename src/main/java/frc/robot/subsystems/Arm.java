@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -34,20 +35,16 @@ public class Arm extends Subsystem {
 		armTalon.setSensorPhase(true);
 		armTalon.setNeutralMode(NeutralMode.Coast);
 		
-		/* set the peak, nominal outputs */
 		armTalon.configNominalOutputForward(0, 10);
 		armTalon.configNominalOutputReverse(0, 10);
-		//armTalon.configPeakOutputForward(1, 10); //Use for PB
-		//armTalon.configPeakOutputReverse(-1, 10); //Use for PB
-		armTalon.configPeakOutputForward(0.6, 10);  //Use for extrasensitive CB
-		armTalon.configPeakOutputReverse(-0.6, 10); //Use for extrasensitive CB
+		armTalon.configPeakOutputForward(1, 10);
+		armTalon.configPeakOutputReverse(-1, 10);
 		
 		armTalon.enableCurrentLimit(true);
 		armTalon.configPeakCurrentLimit(40, 10);
 		armTalon.configPeakCurrentDuration(100, 10);
     armTalon.configContinuousCurrentLimit(30, 10);
     
-		//.25, 10);
 		armTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 40, 10);
 		//armTalon.configOpenloopRamp(0.25, 10);
 		
@@ -58,13 +55,28 @@ public class Arm extends Subsystem {
 		armTalon.config_kD(0, 0, 10);
   }
 
+	/**
+	 * unfinished method
+	 */
   public void SetPosition(){
 		armTalon.set(ControlMode.Position, 0);
   }
 
-  public void ArmSpeed(double armSpeed){
-    armTalon.set(armSpeed);
+  public void setSpeed(double armSpeed){
+    armTalon.set(ControlMode.PercentOutput, armSpeed);
   }
+
+	public void stopArm() {
+		armTalon.set(ControlMode.PercentOutput, 0);
+	}
+
+	public int getEncoder() {
+		return armTalon.getSelectedSensorPosition();
+	}
+
+	public void updateSmartDashboard() {
+		SmartDashboard.putNumber("arm encoder ticks", getEncoder());
+	}
 
   @Override
   public void initDefaultCommand() {
