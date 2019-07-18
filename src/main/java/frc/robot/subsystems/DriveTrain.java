@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -128,6 +129,11 @@ public class DriveTrain extends Subsystem {
 
   public int GetRightEncoder(){
 	  return rightTalon.getSelectedSensorPosition();
+  }
+
+  public void updateSmartDashboard() {
+    SmartDashboard.putNumber("left encoder ticks", GetLeftEncoder());
+    SmartDashboard.putNumber("right encoder ticks", GetRightEncoder());
   }
 
   @Override
