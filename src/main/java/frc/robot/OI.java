@@ -11,15 +11,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.MoveArmDown;
-import frc.robot.commands.MoveArmUp;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public JoystickButton armDown, armUp;
+  public JoystickButton armDown, armUp, armToPosition;
   private Joystick gamepad;
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -33,9 +32,11 @@ public class OI {
 
   armDown = new JoystickButton(gamepad, RobotMap.buttonA);
   armUp = new JoystickButton(gamepad, RobotMap.buttonY);
+  armToPosition = new JoystickButton(gamepad, RobotMap.buttonB);
   
   armUp.whileHeld(new MoveArmUp());
   armDown.whileHeld(new MoveArmDown());
+  armToPosition.whenPressed(new ArmToPosition(20000));
   
   }
   public double GetLeftY(){
