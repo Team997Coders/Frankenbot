@@ -33,7 +33,8 @@ public class RobotMap {
   buttonA = 1,
   buttonB = 2,
   buttonX = 3,            
-  buttonY = 4;
+  buttonY = 4,
+  intake = 0; //Get real port
   
   public static final SerialPort.Port gyro = SerialPort.Port.kUSB;
   // If you are using multiple modules, make sure to define both the port
