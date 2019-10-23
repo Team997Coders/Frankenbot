@@ -8,8 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -19,14 +18,14 @@ import frc.robot.RobotMap;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  VictorSPX arm;
+  WPI_TalonSRX intake;
 
   public Intake() {
-    arm = new VictorSPX(RobotMap.intake);
+    intake = new WPI_TalonSRX(RobotMap.intake);
   }
 
   public void setSpeed(double speed) {
-    arm.set(ControlMode.PercentOutput, speed);
+    intake.set(ControlMode.PercentOutput, speed);
   }
 
   @Override
