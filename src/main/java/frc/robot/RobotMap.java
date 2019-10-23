@@ -8,7 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.SerialPort.Port;
+//import edu.wpi.first.wpilibj.SerialPort.Port;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -29,11 +29,11 @@ public class RobotMap {
   frontRightVictor = 2,
   backLeftVictor = 5,
   backRightVictor = 3,
-  armTalon = 4, //TODO: get actual port
   buttonA = 1,
   buttonB = 2,
   buttonX = 3,            
-  buttonY = 4;
+  buttonY = 4,
+  intake = 8;
   
   public static final SerialPort.Port gyro = SerialPort.Port.kUSB;
   // If you are using multiple modules, make sure to define both the port

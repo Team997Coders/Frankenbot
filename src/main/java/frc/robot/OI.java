@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
+//import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.*;
 
 /**
@@ -18,7 +18,6 @@ import frc.robot.commands.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public JoystickButton armDown, armUp, armToPosition;
   private Joystick gamepad;
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -27,17 +26,16 @@ public class OI {
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
-  public OI(){
-  gamepad = new Joystick(0);
+  public Button a, b;
 
-  armDown = new JoystickButton(gamepad, RobotMap.buttonA);
-  armUp = new JoystickButton(gamepad, RobotMap.buttonY);
-  armToPosition = new JoystickButton(gamepad, RobotMap.buttonB);
-  
-  armUp.whileHeld(new MoveArmUp());
-  armDown.whileHeld(new MoveArmDown());
-  armToPosition.whenPressed(new ArmToPosition(20000));
-  
+  public OI(){
+    gamepad = new Joystick(0);
+    a = new JoystickButton(gamepad, RobotMap.buttonA);
+    b = new JoystickButton(gamepad, RobotMap.buttonB);
+
+    a.whileHeld(new IntakeArm(1));
+    b.whileHeld(new IntakeArm(-1));
+
   }
   public double GetLeftY(){
     return -gamepad.getRawAxis(1);
@@ -54,6 +52,7 @@ public class OI {
   public double GetRightX(){
     return gamepad.getRawAxis(4);
   }
+
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.

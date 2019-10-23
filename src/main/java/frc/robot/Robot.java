@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static DriveTrain driveTrain;
-  public static Arm arm;
+  public static Intake intake;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -37,8 +37,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    arm = new Arm();
     driveTrain = new DriveTrain();
+    intake = new Intake();
     m_oi = new OI();
     m_chooser.setDefaultOption("DoNothing", new AutoDoNothing());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -56,7 +56,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     driveTrain.updateSmartDashboard();
-    arm.updateSmartDashboard();
   }
 
   /**
@@ -126,7 +125,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    arm.autoZero();
   }
 
   /**
