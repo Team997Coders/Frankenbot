@@ -34,7 +34,7 @@ public class OI {
     b = new JoystickButton(gamepad, RobotMap.buttonB);
 
     a.whileHeld(new IntakeArm(1));
-    b.whileHeld(new IntakeArm(-1));
+    b.whileHeld(new OuttakeArm(1));
 
   }
   public double GetLeftY(){

@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class IntakeArm extends Command {
-  public IntakeArm(double speed) {
+public class OuttakeArm extends Command {
+  public OuttakeArm(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.intake);
@@ -25,7 +25,7 @@ public class IntakeArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.setSpeed(-.8);
+    Robot.intake.setSpeed(.8);
   }
 
   // Make this return true when this Command no longer needs to run execute()
